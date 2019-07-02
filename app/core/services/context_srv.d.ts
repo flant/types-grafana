@@ -3,8 +3,12 @@ export declare class User {
     isGrafanaAdmin: any;
     isSignedIn: any;
     orgRole: any;
+    orgId: number;
+    orgCount: number;
     timezone: string;
     helpFlags1: number;
+    lightTheme: boolean;
+    hasEditPersmissionInFolders: boolean;
     constructor();
 }
 export declare class ContextSrv {
