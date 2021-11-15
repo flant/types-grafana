@@ -1,0 +1,114 @@
+/// 
+import { PanelModel } from './PanelModel';
+
+export declare class DashboardModel {
+    id: any;
+    uid: string;
+    title: string;
+    autoUpdate: any;
+    description: any;
+    tags: any;
+    style: any;
+    timezone: any;
+    editable: any;
+    graphTooltip: any;
+    time: any;
+    private originalTime: any;
+    timepicker: any;
+    templating: { list: any[] };
+    private originalTemplating: any;
+    annotations: { list: any[] };
+    refresh: any;
+    snapshot: any;
+    schemaVersion: number;
+    version: number;
+    revision: number;
+    links: any[]; //DashboardLink[];
+    gnetId: any;
+    panels: PanelModel[];
+    panelInEdit?: PanelModel;
+    panelInView?: PanelModel;
+
+    iteration: number;
+    meta: any;
+    events: any;
+
+    nonPersistedProperties: {
+        events: boolean;
+        meta: boolean;
+        panels: boolean; // needs special handling
+        templating: boolean; // needs special handling
+        originalTime: boolean;
+        originalTemplating: boolean;
+        panelInEdit: boolean;
+        panelInView: boolean;
+        getVariablesFromState: boolean;
+    };
+
+    constructor(data: any, meta?: any, getVariablesFromState?: any);
+    addBuiltInAnnotationQuery(): void;
+    private initMeta(meta?: any);
+    getSaveModelClone(options?: any): DashboardModel;
+    private updateTemplatingSaveModelClone(copy: any, defaults: any): void;
+    timeRangeUpdated(timeRange: any): void;
+    startRefresh(): void;
+    render(): void;
+    panelInitialized(panel: PanelModel): void;
+    otherPanelInFullscreen(panel: PanelModel): boolean;
+    initEditPanel(sourcePanel: PanelModel): PanelModel;
+    initViewPanel(panel: PanelModel): void;
+    exitViewPanel(panel: PanelModel): void;
+    exitPanelEditor(): void;
+    private ensureListExist(data: any): any;
+    getNextPanelId(): number;
+    forEachPanel(callback: any): void;
+    getPanelById(id: number): PanelModel | null;
+    canEditPanel(panel?: PanelModel | null): boolean | undefined | null;
+    canEditPanelById(id: number): boolean | undefined | null;
+    addPanel(panel: any): void;
+    sortPanelsByGridPos(): void;
+    cleanUpRepeats(): void;
+    processRepeats(): void;
+    cleanUpRowRepeats(rowPanels: PanelModel[]): void;
+    processRowRepeats(row: PanelModel): void;
+    getPanelRepeatClone(sourcePanel: PanelModel, valueIndex: number, sourcePanelIndex: number): PanelModel;
+    getRowRepeatClone(sourceRowPanel: PanelModel, valueIndex: number, sourcePanelIndex: number): PanelModel;
+    repeatPanel(panel: PanelModel, panelIndex: number): void;
+    repeatRow(panel: PanelModel, panelIndex: number, variable: any): void;
+    updateRepeatedPanelIds(panel: PanelModel, repeatedByRow?: boolean): PanelModel;
+    getSelectedVariableOptions(variable: any): any[];
+    getRowHeight(rowPanel: PanelModel): number;
+    removePanel(panel: PanelModel): void;
+    removeRow(row: PanelModel, removePanels: boolean): void;
+    expandRows(): void;
+    collapseRows(): void;
+    setPanelFocus(id: number): void;
+    updateSubmenuVisibility(): void;
+    getPanelInfoById(panelId: number): {panel: PanelModel, index: number} | null;
+    duplicatePanel(panel: PanelModel): any;
+    formatDate(date: any, format?: string): any;
+    destroy(): void;
+    toggleRow(row: PanelModel): void;
+    getRowPanels(rowIndex: number): PanelModel[];
+    cycleGraphTooltip(): void;
+    sharedTooltipModeEnabled(): boolean;
+    sharedCrosshairModeOnly(): boolean;
+    getRelativeTime(date: any): any;
+    isSnapshot(): boolean;
+    getTimezone(): any;
+    private updateSchema(old: any): void;
+    resetOriginalTime();
+    hasTimeChanged();
+    resetOriginalVariables(initial: boolean);
+    hasVariableValuesChanged(): void;
+    autoFitPanels(viewHeight: number, kioskMode?: any): void;
+    templateVariableValueUpdated(): void;
+    expandParentRowFor(panelId: number);
+    toggleLegendsForAll();
+    getVariables(): any;
+    private getPanelRepeatVariable(panel: PanelModel): any;
+    private isSnapshotTruthy(): any;
+    private hasVariables(): boolean;
+    private hasVariablesChanged(originalVariables: any[], currentVariables: any[]): boolean;
+    private cloneVariablesFrom(variables: any[]): any[];
+}
